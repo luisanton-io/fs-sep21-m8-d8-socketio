@@ -1,13 +1,25 @@
 import mongoose from "mongoose"
 
-const MessageSchema = new mongoose.Schema({
+interface Message {
+    text: string;
+    sender: string;
+    timestamp: number;
+    id: string;
+}
+
+const MessageSchema = new mongoose.Schema<Message>({
     text: String,
     sender: String,
     timestamp: Number,
     id: String
 })
 
-const RoomSchema = new mongoose.Schema({
+interface Room {
+    name: string;
+    messages: Message[]
+}
+
+const RoomSchema = new mongoose.Schema<Room>({
     name: {
         type: String,
         required: true
